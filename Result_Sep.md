@@ -11,3 +11,5 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
 
+
+[報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
