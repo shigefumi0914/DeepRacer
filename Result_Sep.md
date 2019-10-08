@@ -1,20 +1,21 @@
 # 9月（2019）のレース結果
 
+9月のレースコースはこちらでした。
 
-9月のコースはこちらでした。
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Course_Sep.png" width=50%>
 
+なので練習用コースのCumulo Carrera Trainingで走らせることにしました。
 とりあえず色々試行錯誤しながら、ActionSpaceと報酬関数を作りました。
 
-ActionSpaceは少ない方がいいと記事が書いてたので角度は-30度、0度、30度の3パターンと速度は7m/sと3.5m/sの2パターンで設定することにした。
+ActionSpaceは少ない方がいいと記事が書いてたので角度は-30度、0度、30度の3パターンと速度は7m/sと3.5m/sの2パターンで設定することにしました。
 ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
 
-
 [報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
 
 報酬関数①の考え方
+waypointsを利用してコースが直線かカーブかを正確に判定して、直線の時はスピードが高い方に多くの報酬を、カーブの時はスピードが低い方に報酬を与えることにしました。
 
 ```python
     import math
@@ -72,6 +73,35 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 報酬関数②の考え方
 ```python
+    distance_from_center_reward = 0
+    marker_1 = 0.1 * track_width
+    marker_2 = 0.2 * track_width
+    marker_3 = 0.3 * track_width
+    if distance_from_center >= 0.0 and distance_from_center <= marker_1:
+        distance_from_center_reward = 1
+    elif distance_from_center <= marker_2:
+        distance_from_center_reward = 0.6
+    elif distance_from_center <= marker_3:
+        distance_from_center_reward = 0.3
+    else:
+        return 1e-3
+
+    reward += distance_from_center_reward
+```
+
+報酬関数③の考え方
+```python
+    steering_reward = 1e-3
+    if distance_from_center > 0:
+        if is_left_of_center and steering_angle <= 0:
+            steering_reward = 1.0
+        elif (not is_left_of_center) and steering_angle >= 0:
+            steering_reward = 1.0
+    else:
+        if steering_angle == 0:
+            steering_reward = 1.0
+            
+    reward += steering_reward
 ```
 これらを取り入れてこのように報酬関数を作成した。
 
