@@ -14,6 +14,8 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 [報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
 
+報酬関数①の考え方
+
 ```python
     import math
     DIF = 20
@@ -67,3 +69,12 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
          reward = 1.0 
     return reward
 ```
+
+報酬関数②の考え方
+```python
+```
+これらを取り入れてこのように報酬関数を作成した。
+
+[報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
+
+
