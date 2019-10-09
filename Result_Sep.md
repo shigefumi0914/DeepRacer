@@ -73,6 +73,9 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 ```
 
 報酬関数②の考え方
+
+コースの真ん中を走ると報酬が高いように設定
+
 ```python
     distance_from_center_reward = 0
     marker_1 = 0.1 * track_width
@@ -91,6 +94,9 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 ```
 
 報酬関数③の考え方
+
+ステアリングに
+
 ```python
     steering_reward = 1e-3
     if distance_from_center > 0:
@@ -120,7 +126,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 その時のグラフがこちら
 
-<img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
+<img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_2.png" width=50%>
 
 ということで本番コースを走らせたらこのような結果になりました。
 1338人中なんと314位という結果に。トータルコストも4時間学習させただけなので500円くらいです。ただそれまでに試行錯誤していたので6000円ほどかかってます。 
