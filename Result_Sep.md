@@ -114,10 +114,13 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 その時のグラフがこちら
 
+<img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_1.png" width=50%>
+
 次にまた同じコースを2時間追加で学習させました。
 
 その時のグラフがこちら
 
+<img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
 
 ということで本番コースを走らせたらこのような結果になりました。
 1338人中なんと314位という結果に。トータルコストも4時間学習させただけなので500円くらいです。ただそれまでに試行錯誤していたので6000円ほどかかってます。 
