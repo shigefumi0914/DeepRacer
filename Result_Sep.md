@@ -14,7 +14,7 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 [報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
 
-報酬関数①の考え方
+## 報酬関数①の考え方
 
 waypointsを利用してコースが直線かカーブかを正確に判定して、直線の時はスピードが高い方に多くの報酬を、カーブの時はスピードが低い方に報酬を与えることにしました。
 
@@ -95,7 +95,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 報酬関数③の考え方
 
-ステアリングに
+ステアリングに報酬を与えました。
 
 ```python
     steering_reward = 1e-3
@@ -129,6 +129,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_2.png" width=50%>
 
 ということで本番コースを走らせたらこのような結果になりました。
+
 1338人中なんと314位という結果に。トータルコストも4時間学習させただけなので500円くらいです。ただそれまでに試行錯誤していたので6000円ほどかかってます。 
 
 
