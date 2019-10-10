@@ -1,5 +1,7 @@
 # 9月（2019）のレース結果
 
+まずはレースに出てみたかったのでとりあえずモデルを作ってレースに出ることにしました。
+
 9月のレースコースはこちらでした。
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Course_Sep.png" width=50%>
@@ -7,7 +9,7 @@
 なので練習用コースのCumulo Carrera Trainingで走らせることにしました。
 とりあえず色々試行錯誤しながら、ActionSpaceと報酬関数を作りました。
 
-ActionSpaceは少ない方がいいと記事が書いてたので角度は-30度、0度、30度の3パターンと速度は7m/sと3.5m/sの2パターンで設定することにしました。
+ActionSpaceは少ない方がいいという記事があったので角度は-30度、0度、30度の3パターンと速度は7m/sと3.5m/sの2パターンで設定することにしました。
 ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
@@ -35,17 +37,6 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
             next_waypoint = waypoints[closest_waypoints[1] + i]
             track_waypoints.append(waypoints[closest_waypoints[1] + i])
  
-        if closest_waypoints[1] + i - 1 >= len(waypoints):
-            prev_waypoint = waypoints[closest_waypoints[1] + i - 1 - len(waypoints)]
-        else:
-            prev_waypoint = waypoints[closest_waypoints[1] + i - 1]
-        track_direction = math.atan2(next_waypoint[1] - prev_waypoint[1], next_waypoint[0] - prev_waypoint[0])
-        track_directions.append(track_direction)
- 
-    if track_directions[4] - track_directions[0] < 0.3:
-       direction_type = STRAIGHT
-       print("direction_type: STRAIGHT")
-    else:
        direction_type = CURVE
        print("direction_type: CURVE")
 
@@ -74,7 +65,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 ## 報酬関数②の考え方
 
-コースの真ん中を走ると報酬が高いように設定
+コースの真ん中を走ると報酬が高いように設定しました。
 
 ```python
     distance_from_center_reward = 0
@@ -114,7 +105,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 [報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
 
-ハイパーパラメータはよくわからなかったのでデフォルトで
+ハイパーパラメータはよくわからなかったのでデフォルトのままです。
 
 この設定でCumulo Carrera Trainingコースを2時間学習させました。
 
@@ -122,17 +113,30 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_1.png" width=50%>
 
+グラフから学習が進むにつれて報酬が上がっていることがわかります。正しく学習出来ていると思います。
+
+またエピソードからも何回か100になっていて完走出来ています。
+
+なのでもうすこし同様のこーすで学習させようと思いました。
+
 次にまた同じコースを2時間追加で学習させました。
 
 その時のグラフがこちら
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_2.png" width=50%>
 
+しかしながら先ほどとは違いあまり報酬は上がりませんでした。
+
+エピソードは先ほどより多く完走出来ていることがわかります。たぶんこれ以上学習させても賢くならなさそうでした。
+
+
 ということで本番コースを走らせたらこのような結果になりました。
 
 1338人中なんと314位という結果に。トータルコストも4時間学習させただけなので500円くらいです。ただそれまでに試行錯誤していたので6000円ほどかかってます。 
 
+やはり15秒というのが一つの壁のようです。
 
+次回10月のレースもやってみようと思います。
 
 
 
