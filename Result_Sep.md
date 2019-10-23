@@ -14,8 +14,6 @@ ActionSpaceが多いと学習量が多くて収束しにくいとか。
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/ActionSpace_Sep.png" width=50%>
 
-[報酬関数]https://github.com/shigefumi0914/DeepRacer/blob/master/Rewad_Fun_Sep.py
-
 ## 報酬関数①の考え方
 
 waypointsを利用してコースが直線かカーブかを正確に判定して、直線の時はスピードが高い方に多くの報酬を、カーブの時はスピードが低い方に報酬を与えることにしました。
@@ -117,7 +115,7 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 またエピソードからも何回か100になっていて完走出来ています。
 
-なのでもうすこし同様のこーすで学習させようと思いました。
+なのでもうすこし同様のコースで学習させようと思いました。
 
 次にまた同じコースを2時間追加で学習させました。
 
@@ -125,10 +123,9 @@ waypointsを利用してコースが直線かカーブかを正確に判定し�
 
 <img src="https://github.com/shigefumi0914/DeepRacer/blob/master/Image/Learning_2.png" width=50%>
 
-しかしながら先ほどとは違いあまり報酬は上がりませんでした。
+しかしながら先ほどとは違い、あまり報酬は上がりませんでした。
 
 エピソードは先ほどより多く完走出来ていることがわかります。たぶんこれ以上学習させても賢くならなさそうでした。
-
 
 ということで本番コースを走らせたらこのような結果になりました。
 
